@@ -15,60 +15,38 @@
         color: #222;
         margin-bottom: 30px;
       }
-      .button {
-        display: block;
-        margin: 15px auto;
-        padding: 14px 24px;
-        font-size: 16px;
-        border: none;
-        border-radius: 8px;
-        background-color: #1e88e5;
-        color: white;
-        cursor: pointer;
-        width: 80%;
-        max-width: 400px;
-        transition: background-color 0.2s ease;
-      }
-      .button:hover {
-        background-color: #1565c0;
-      }
     </style>
   </head>
   <body>
-    <h1>Open Kaarmika App</h1>
-
-    <h2>Worker Flow</h2>
-
-    <button class="button" onclick="openDeepLink('kaarmika://job/97')">
-      🔔 New Job Alert (for Worker)
-    </button>
-
-    <button
-      class="button"
-      onclick="openDeepLink('kaarmika://worker/contractor/98')"
-    >
-      🧑‍🔧 Worker to Contractor Feedback
-    </button>
-
-    <br /><br />
-    <hr />
-
-    <h2>Contracter Flow</h2>
-
-    <button class="button" onclick="openDeepLink('kaarmika://job/details/97')">
-      📝 New Application from Worker
-    </button>
-
-    <button
-      class="button"
-      onclick="openDeepLink('kaarmika://worker/rating/98')"
-    >
-      ⭐ Contractor to Worker Feedback
-    </button>
+    <h1>Opening Kaarmika App...</h1>
+    <p>If nothing happens, make sure the app is installed.</p>
 
     <script>
-      function openDeepLink(deepLinkUrl) {
-        window.location.href = deepLinkUrl;
+      // Parse URL parameters
+      const params = new URLSearchParams(window.location.search);
+      const type = params.get("type");
+      const taskId = params.get("task_id");
+
+      // Map type to deeplink path
+      const deepLinkMap = {
+        job_alert: (id) => `kaarmika://job/${id}`,
+        worker_to_contractor: (id) => `kaarmika://worker/contractor/${id}`,
+        application: (id) => `kaarmika://job/details/${id}`,
+        contractor_to_worker: (id) => `kaarmika://worker/rating/${id}`,
+      };
+
+      // Open the deeplink if valid
+      if (type && taskId && deepLinkMap[type]) {
+        const deeplink = deepLinkMap[type](taskId);
+        window.location.href = deeplink;
+
+        // Optional: fallback to Play Store if app is not installed
+        setTimeout(() => {
+          window.location.href =
+            "https://play.google.com/store/apps/details?id=com.kaarmika.app";
+        }, 2000);
+      } else {
+        document.body.innerHTML = "<h1>Invalid or Missing Link Parameters</h1>";
       }
     </script>
   </body>

@@ -39,12 +39,6 @@
       if (type && taskId && deepLinkMap[type]) {
         const deeplink = deepLinkMap[type](taskId);
         window.location.href = deeplink;
-
-        // Optional: fallback to Play Store if app is not installed
-        setTimeout(() => {
-          window.location.href =
-            "https://play.google.com/store/apps/details?id=com.kaarmika.app";
-        }, 2000);
       } else {
         document.body.innerHTML = "<h1>Invalid or Missing Link Parameters</h1>";
       }

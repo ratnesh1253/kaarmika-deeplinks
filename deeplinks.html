@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kaarmika Deep Link Launcher</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f0f2f5;
+        padding: 40px;
+        text-align: center;
+      }
+      h1 {
+        color: #222;
+        margin-bottom: 30px;
+      }
+      .button {
+        display: block;
+        margin: 15px auto;
+        padding: 14px 24px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        background-color: #1e88e5;
+        color: white;
+        cursor: pointer;
+        width: 80%;
+        max-width: 400px;
+        transition: background-color 0.2s ease;
+      }
+      .button:hover {
+        background-color: #1565c0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Open Kaarmika App</h1>
+
+    <h2>Worker Flow</h2>
+
+    <button class="button" onclick="openDeepLink('kaarmika://job/97')">
+      🔔 New Job Alert (for Worker)
+    </button>
+
+    <button
+      class="button"
+      onclick="openDeepLink('kaarmika://worker/contractor/98')"
+    >
+      🧑‍🔧 Worker to Contractor Feedback
+    </button>
+
+    <br /><br />
+    <hr />
+
+    <h2>Contracter Flow</h2>
+
+    <button class="button" onclick="openDeepLink('kaarmika://job/details/97')">
+      📝 New Application from Worker
+    </button>
+
+    <button
+      class="button"
+      onclick="openDeepLink('kaarmika://worker/rating/98')"
+    >
+      ⭐ Contractor to Worker Feedback
+    </button>
+
+    <script>
+      function openDeepLink(deepLinkUrl) {
+        window.location.href = deepLinkUrl;
+
+        // setTimeout(() => {
+        //   // Replace this with your actual Play Store URL
+        //   window.location.href =
+        //     "https://play.google.com/store/apps/details?id=com.kaarmika.app";
+        // }, 1500);
+      }
+    </script>
+  </body>
+</html>
